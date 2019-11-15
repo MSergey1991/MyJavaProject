@@ -1,8 +1,9 @@
 package com.sheduler.dao;
 
-import com.sheduler.entities.Tasks;
+
+import java.util.Date;
 
 public interface TaskDao  {
 
-    void saveTask (Tasks task);
+    void saveTask (String assignee, String  summary, Date startDate, Date endDate);
 }
