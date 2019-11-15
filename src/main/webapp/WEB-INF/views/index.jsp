@@ -11,6 +11,16 @@
 <a href="/addTask">Add new Task</a>
 
 
+
+<form method="post" action="searchFilter">
+    <input type="text" name="assignee" placeholder="Assignee">
+    <input type="date" name="startDate">
+    <input type="date" name="endDate">
+    <button type="submit">Search by filter</button>
+</form>
+
+
+
 <table>
     <tr>
         <th>ID</th>

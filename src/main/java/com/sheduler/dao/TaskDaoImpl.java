@@ -19,12 +19,17 @@ public class TaskDaoImpl implements TaskDao{
     }
 
     public void saveTask(String assignee, String  summary, Date startDate, Date endDate) {
-        String sql = "INSERT INTO tasks (assignee,summary,startDate,endDate) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO tasks (assignee, summary, startDate, endDate) VALUES (?,?,?,?)";
         jdbcTemplate.update(sql,assignee,summary,startDate,endDate);
     }
 
     public List<Tasks> findAll() {
         String sql = "SELECT * FROM tasks";
-        return jdbcTemplate.query(sql,new TasksMapper());
+        return jdbcTemplate.query(sql, new TasksMapper());
+    }
+
+    public List<Tasks> findBySearchFilter(String assignee, Date startDate, Date endDate) {
+        String sql = "SELECT * FROM tasks WHERE assignee=? AND startDate >=? AND endDate <=?";
+        return jdbcTemplate.query(sql, new TasksMapper(), assignee, startDate, endDate);
     }
 }

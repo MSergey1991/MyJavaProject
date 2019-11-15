@@ -11,6 +11,10 @@ public interface TaskDao  {
     void saveTask (String assignee, String  summary, Date startDate, Date endDate);
 
     List<Tasks> findAll ();
+
+    List<Tasks> findBySearchFilter (String assignee, Date startDate, Date endDate);
+
+
 }
 
 

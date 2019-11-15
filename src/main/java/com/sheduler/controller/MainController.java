@@ -44,4 +44,10 @@ public class MainController {
         taskDao.saveTask(assignee, summary, startDate, endDate);
         return "redirect:/index";
     }
+
+    @PostMapping ("searchFilter")
+    public String searchFilter (@RequestParam String assignee, @RequestParam Date startDate, @RequestParam Date endDate, Map<String, Object> model){
+        model.put("allTasks", taskDao.findBySearchFilter(assignee, startDate, endDate));
+        return "index";
+    }
 }
