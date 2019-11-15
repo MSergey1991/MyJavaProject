@@ -14,7 +14,7 @@ public interface TaskDao  {
 
     List<Tasks> findBySearchFilter (String assignee, Date startDate, Date endDate);
 
-
+    List<String> findAllAssignees ();
 }
 
 

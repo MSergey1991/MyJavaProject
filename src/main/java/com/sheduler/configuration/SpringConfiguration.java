@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.sql.DataSource;
+import java.util.TimeZone;
 
 
 @Configuration
@@ -16,7 +17,7 @@ public class SpringConfiguration {
     @Bean
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setUrl("jdbc:mysql://localhost:3306/testTaskDB?useSll=false&serverTimezone=UTC");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/testTaskDB?useSll=false&serverTimezone="+ TimeZone.getDefault().getID());
         dataSource.setUsername("root");
         dataSource.setPassword("***");
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");

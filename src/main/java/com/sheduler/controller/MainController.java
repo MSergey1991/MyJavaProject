@@ -31,6 +31,7 @@ public class MainController {
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public String index(Model model) {
         model.addAttribute("allTasks", taskDao.findAll());
+        model.addAttribute("allAssignees", taskDao.findAllAssignees());
         return "index";
     }
 
@@ -48,6 +49,7 @@ public class MainController {
     @PostMapping ("searchFilter")
     public String searchFilter (@RequestParam String assignee, @RequestParam Date startDate, @RequestParam Date endDate, Map<String, Object> model){
         model.put("allTasks", taskDao.findBySearchFilter(assignee, startDate, endDate));
+        model.put("allAssignees", taskDao.findAllAssignees());
         return "index";
     }
 }

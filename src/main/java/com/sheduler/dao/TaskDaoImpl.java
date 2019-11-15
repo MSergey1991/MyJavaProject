@@ -42,4 +42,10 @@ public class TaskDaoImpl implements TaskDao {
             sql = "SELECT * FROM tasks";
         return jdbcTemplate.query(sql, new TasksMapper());
     }
+
+    @Override
+    public List<String> findAllAssignees() {
+        String sql = "SELECT DISTINCT assignee FROM tasks";
+        return jdbcTemplate.query(sql, new AssigneesMapper());
+    }
 }

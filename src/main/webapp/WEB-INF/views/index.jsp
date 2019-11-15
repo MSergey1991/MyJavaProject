@@ -13,7 +13,15 @@
 
 
 <form method="post" action="searchFilter">
-    <input type="text" name="assignee" placeholder="Assignee">
+
+    <select name ="assignee" itemtype="text">
+        <option value="" label="Assignee not selected"/>
+        <c:forEach items="${allAssignees}" var="assignee">
+            <option value="${assignee}">
+                <c:out value="${assignee}"/>
+            </option>
+        </c:forEach>
+    </select>
     <input type="date" name="startDate">
     <input type="date" name="endDate">
     <button type="submit">Search by filter</button>
