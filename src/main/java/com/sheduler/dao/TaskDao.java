@@ -1,4 +1,8 @@
 package com.sheduler.dao;
 
-public interface TaskDao {
+import com.sheduler.entities.Tasks;
+
+public interface TaskDao  {
+
+    void saveTask (Tasks task);
 }
