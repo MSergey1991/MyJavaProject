@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Index page!</title>
+    <title>Title</title>
 </head>
 <body>
-<h1> Hi!  It's index </h1>
+<h1>Indesxxxx</h1>
+<a href="/addTask">Add new Task</a>
+
 </body>
 </html>
