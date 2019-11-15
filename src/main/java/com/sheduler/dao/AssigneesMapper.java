@@ -1,6 +1,5 @@
 package com.sheduler.dao;
 
-import com.sheduler.entities.Tasks;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

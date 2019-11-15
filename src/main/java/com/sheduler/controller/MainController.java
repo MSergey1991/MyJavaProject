@@ -1,6 +1,7 @@
 package com.sheduler.controller;
 
 import com.sheduler.dao.TaskDao;
+import com.sheduler.utilities.MessageSetter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -47,9 +48,10 @@ public class MainController {
     }
 
     @PostMapping ("searchFilter")
-    public String searchFilter (@RequestParam String assignee, @RequestParam Date startDate, @RequestParam Date endDate, Map<String, Object> model){
-        model.put("allTasks", taskDao.findBySearchFilter(assignee, startDate, endDate));
+    public String searchFilter (@RequestParam String assignee, @RequestParam Date startDate, @RequestParam Date endDate, @RequestParam String period, Map<String, Object> model){
+        model.put("allTasks", taskDao.findBySearchFilter(assignee, startDate, endDate, period));
         model.put("allAssignees", taskDao.findAllAssignees());
+        model.put("noSearchResultMessage", MessageSetter.setNoSearchResultMessage(taskDao.findBySearchFilter(assignee, startDate, endDate, period)));
         return "index";
     }
 }

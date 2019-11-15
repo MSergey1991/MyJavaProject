@@ -13,6 +13,7 @@ import org.springframework.web.servlet.view.ResourceBundleViewResolver;
 @EnableWebMvc
 @ComponentScan (basePackages = "com.sheduler.controller")
 public class WebConfiguration extends WebMvcConfigurerAdapter {
+
     @Bean
     public ViewResolver getViewResolver () {
         InternalResourceViewResolver bean = new InternalResourceViewResolver();
@@ -21,6 +22,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
         bean.setPrefix("/WEB-INF/views/");
         return bean;
     }
+
     @Bean
     public ViewResolver resourceBundleViewResolver() {
         ResourceBundleViewResolver bean = new ResourceBundleViewResolver();

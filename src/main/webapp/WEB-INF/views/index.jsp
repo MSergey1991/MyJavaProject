@@ -11,10 +11,9 @@
 <a href="/addTask">Add new Task</a>
 
 
-
 <form method="post" action="searchFilter">
 
-    <select name ="assignee" itemtype="text">
+    <select name="assignee" itemtype="text">
         <option value="" label="Assignee not selected"/>
         <c:forEach items="${allAssignees}" var="assignee">
             <option value="${assignee}">
@@ -22,12 +21,27 @@
             </option>
         </c:forEach>
     </select>
+
     <input type="date" name="startDate">
     <input type="date" name="endDate">
+
+    <select name="period" itemtype="text">
+        <option value="" label="Choose time period"/>
+        <option value="lastQuarter" label="Last Quarter"/>
+        <option value="lastMonth" label="Last Month"/>
+        <option value="lastWeek" label="Last Week"/>
+        <option value="currentQuarterToDate" label="Current Quarter to Date"/>
+        <option value="currentMonthToDate" label="Current Month to Date"/>
+        <option value="currentWeekToDate" label="Current Week to Date"/>
+    </select>
+
     <button type="submit">Search by filter</button>
+
 </form>
 
-
+<h3>
+    ${noSearchResultMessage}
+</h3>
 
 <table>
     <tr>

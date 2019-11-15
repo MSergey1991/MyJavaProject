@@ -1,6 +1,5 @@
 package com.sheduler.dao;
 
-
 import com.sheduler.entities.Tasks;
 
 import java.util.Date;
@@ -12,7 +11,7 @@ public interface TaskDao  {
 
     List<Tasks> findAll ();
 
-    List<Tasks> findBySearchFilter (String assignee, Date startDate, Date endDate);
+    List<Tasks> findBySearchFilter (String assignee, Date startDate, Date endDate, String period);
 
     List<String> findAllAssignees ();
 }
