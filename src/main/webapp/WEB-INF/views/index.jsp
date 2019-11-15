@@ -1,7 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
 <html lang="en">
+<fmt:setLocale value="en_US"/>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -55,8 +58,8 @@
         <tr>
             <td>${task.id}</td>
             <td>${task.summary}</td>
-            <td>${task.startDate}</td>
-            <td>${task.endDate}</td>
+            <td><fmt:formatDate pattern="dd/MMM/yyyy" value="${task.startDate}"/></td>
+            <td><fmt:formatDate pattern="dd/MMM/yyyy" value="${task.endDate}"/></td>
             <td>${task.assignee}</td>
         </tr>
     </c:forEach>
