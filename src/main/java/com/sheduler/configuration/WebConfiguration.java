@@ -11,11 +11,11 @@ import org.springframework.web.servlet.view.ResourceBundleViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan (basePackages = "com.sheduler.controller")
+@ComponentScan(basePackages = "com.sheduler.controller")
 public class WebConfiguration extends WebMvcConfigurerAdapter {
 
     @Bean
-    public ViewResolver getViewResolver () {
+    public ViewResolver getViewResolver() {
         InternalResourceViewResolver bean = new InternalResourceViewResolver();
         bean.setOrder(1);
         bean.setSuffix(".jsp");

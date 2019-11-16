@@ -2,6 +2,7 @@ package com.sheduler.controller;
 
 import com.sheduler.dao.TaskDao;
 import com.sheduler.utilities.MessageSetter;
+import com.sheduler.utilities.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -37,18 +38,20 @@ public class MainController {
     }
 
     @RequestMapping(value = {"addTask"}, method = RequestMethod.GET)
-    public String addTask(Model model) {
+    public String addTask() {
         return "addTask";
     }
 
-    @PostMapping ("createNewTask")
-    public String createNewTask (@RequestParam String assignee, @RequestParam String summary, @RequestParam Date startDate, @RequestParam Date endDate, Map<String, Object> model){
-        taskDao.saveTask(assignee, summary, startDate, endDate);
+    @PostMapping("createNewTask")
+    public String createNewTask(@RequestParam String assignee, @RequestParam String summary, @RequestParam Date startDate, @RequestParam Date endDate, Map<String, Object> model) {
+        boolean parametersValidationResult = Validator.validateTaskParameters(assignee, summary, startDate, endDate);
+        model.put("incorrectEnteredParametersMessage", MessageSetter.setEnteredIncorrectParametersMessage(parametersValidationResult));
+        taskDao.saveTask(assignee, summary, startDate, endDate, parametersValidationResult);
         return "redirect:/index";
     }
 
-    @PostMapping ("searchFilter")
-    public String searchFilter (@RequestParam String assignee, @RequestParam Date startDate, @RequestParam Date endDate, @RequestParam String period, Map<String, Object> model){
+    @PostMapping("searchFilter")
+    public String searchFilter(@RequestParam String assignee, @RequestParam Date startDate, @RequestParam Date endDate, @RequestParam String period, Map<String, Object> model) {
         model.put("allTasks", taskDao.findBySearchFilter(assignee, startDate, endDate, period));
         model.put("allAssignees", taskDao.findAllAssignees());
         model.put("noSearchResultMessage", MessageSetter.setNoSearchResultMessage(taskDao.findBySearchFilter(assignee, startDate, endDate, period)));

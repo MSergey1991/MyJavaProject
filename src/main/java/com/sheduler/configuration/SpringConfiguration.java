@@ -15,9 +15,9 @@ import java.util.TimeZone;
 public class SpringConfiguration {
 
     @Bean
-    public DataSource dataSource(){
+    public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setUrl("jdbc:mysql://localhost:3306/testTaskDB?useSll=false&serverTimezone="+ TimeZone.getDefault().getID());
+        dataSource.setUrl("jdbc:mysql://localhost:3306/testTaskDB?useSll=false&serverTimezone=" + TimeZone.getDefault().getID());
         dataSource.setUsername("root");
         dataSource.setPassword("***");
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
@@ -25,14 +25,14 @@ public class SpringConfiguration {
     }
 
     @Bean
-    public JdbcTemplate jdbcTemplate(){
+    public JdbcTemplate jdbcTemplate() {
         return new JdbcTemplate(dataSource());
 
     }
 
     @Bean
-    public TaskDao taskDao(){
-        return new TaskDaoImpl (jdbcTemplate());
+    public TaskDao taskDao() {
+        return new TaskDaoImpl(jdbcTemplate());
     }
 
 }

@@ -19,9 +19,11 @@ public class TaskDaoImpl implements TaskDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void saveTask(String assignee, String summary, Date startDate, Date endDate) {
-        String sql = "INSERT INTO tasks (assignee, summary, startDate, endDate) VALUES (?,?,?,?)";
-        jdbcTemplate.update(sql, assignee, summary, startDate, endDate);
+    public void saveTask(String assignee, String summary, Date startDate, Date endDate, boolean parametersValidationResult) {
+        if (parametersValidationResult == true) {
+            String sql = "INSERT INTO tasks (assignee, summary, startDate, endDate) VALUES (?,?,?,?)";
+            jdbcTemplate.update(sql, assignee, summary, startDate, endDate);
+        }
     }
 
     public List<Tasks> findAll() {
@@ -30,7 +32,7 @@ public class TaskDaoImpl implements TaskDao {
     }
 
     public List<Tasks> findBySearchFilter(String assignee, Date startDate, Date endDate, String period) {
-        if(!period.isEmpty()){
+        if (!period.isEmpty()) {
             startDate = selectStartDate(period);
             endDate = selectEndDate(period);
         }
@@ -55,7 +57,7 @@ public class TaskDaoImpl implements TaskDao {
         return jdbcTemplate.query(sql, new AssigneesMapper());
     }
 
-    Date selectStartDate(String period){
+    Date selectStartDate(String period) {
         Date startDate = new Date();
         Calendar calendar = Calendar.getInstance();
         TimeSetter.setMinimumTimeOfTheStartDate(calendar);
@@ -68,13 +70,13 @@ public class TaskDaoImpl implements TaskDao {
             }
             break;
             case "lastMonth": {
-                calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH)-1);
+                calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH) - 1);
                 calendar.set(Calendar.DAY_OF_MONTH, 1);
                 startDate = calendar.getTime();
             }
             break;
             case "lastWeek": {
-                calendar.set(Calendar.WEEK_OF_YEAR, calendar.get(Calendar.WEEK_OF_YEAR)-1);
+                calendar.set(Calendar.WEEK_OF_YEAR, calendar.get(Calendar.WEEK_OF_YEAR) - 1);
                 calendar.set(Calendar.DAY_OF_WEEK, 2);
                 startDate = calendar.getTime();
             }
@@ -99,7 +101,7 @@ public class TaskDaoImpl implements TaskDao {
         return startDate;
     }
 
-    Date selectEndDate(String period){
+    Date selectEndDate(String period) {
         Date endDate = new Date();
         Calendar calendar = Calendar.getInstance();
         TimeSetter.setMaximalTimeOfTheEndDate(calendar);
@@ -111,13 +113,13 @@ public class TaskDaoImpl implements TaskDao {
             }
             break;
             case "lastMonth": {
-                calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH)-1);
+                calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH) - 1);
                 calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
                 endDate = calendar.getTime();
             }
             break;
             case "lastWeek": {
-                calendar.set(Calendar.WEEK_OF_YEAR, calendar.get(Calendar.WEEK_OF_YEAR)-1);
+                calendar.set(Calendar.WEEK_OF_YEAR, calendar.get(Calendar.WEEK_OF_YEAR) - 1);
                 calendar.set(Calendar.DAY_OF_WEEK, 8);
                 endDate = calendar.getTime();
             }
@@ -137,4 +139,6 @@ public class TaskDaoImpl implements TaskDao {
         }
         return endDate;
     }
+
+
 }

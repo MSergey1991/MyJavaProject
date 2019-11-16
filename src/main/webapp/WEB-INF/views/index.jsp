@@ -46,6 +46,10 @@
     ${noSearchResultMessage}
 </h3>
 
+<h1>
+    ${incorrectEnteredParametersMessage}
+</h1>
+
 <table>
     <tr>
         <th>ID</th>
