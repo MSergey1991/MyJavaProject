@@ -13,7 +13,7 @@ public class MessageSetter {
 
     public static String setEnteredIncorrectParametersMessage(boolean parametersValidationResult) {
         if (parametersValidationResult==false){
-            return "Task can't be added, becouse you entered incorrect parameters. Try again, please.";
+            return "Task can't be added, because you entered incorrect parameters. Try again, please.";
         }else return "";
     }
 }

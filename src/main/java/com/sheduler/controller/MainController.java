@@ -47,7 +47,8 @@ public class MainController {
         boolean parametersValidationResult = Validator.validateTaskParameters(assignee, summary, startDate, endDate);
         model.put("incorrectEnteredParametersMessage", MessageSetter.setEnteredIncorrectParametersMessage(parametersValidationResult));
         taskDao.saveTask(assignee, summary, startDate, endDate, parametersValidationResult);
-        return "redirect:/index";
+        if(parametersValidationResult==true){return "redirect:/index";}
+        else return "addTask";
     }
 
     @PostMapping("searchFilter")
