@@ -12,7 +12,7 @@
  
  Таблицу в БД необходимо создать заранее:
  
- CREATE TABLE task
+ CREATE TABLE tasks
 (
     id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
     assignee varchar(45),
